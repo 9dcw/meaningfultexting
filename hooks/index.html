@@ -1,14 +1,40 @@
-hello hooks
 
 <script>
 // I'll just put in my javascript there
 
 // I would guess I can parse url parameters in html?
 
-const queryString = window.location.search;
-console.log(queryString);
 
 // then I schedule a new text for the next day
 // construct the url and ping it back to twilio
-document.write('hello hooks')
+
+async function setMessage () {
+    const queryString = window.location.search;
+    console.log(queryString);
+    document.write('hello hooks')
+    /// I write a post request to https://harvesting.ninja/hit_twilio
+    // with variables:
+    // message
+    // nunmber
+    // minutes
+
+    let form = new FormData();
+    form.append('message','first message!');
+    form.append('nunmber','+19172095158');
+    //form.append('minutes','3600');
+
+    //$("#status").html('Starting Processing of staging to instagram...')
+    console.log(clip_path);
+    fetch('https://harvesting.ninja/hit_twilio', {
+        method: 'POST',
+        body: form
+    })
+        .then(function(response) {
+            console.log(response.text());
+            return response.text()
+        } )
+        .catch(error => console.log(error)
+        )
+
+      }
 </script>
