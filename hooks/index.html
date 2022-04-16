@@ -18,20 +18,16 @@ async function setMessage () {
     console.log(queryString);
     console.log('into the set message')
     document.write('hello hooks')
-    /// I write a post request to https://harvesting.ninja/hit_twilio
-    // with variables:
-    // message
-    // nunmber
-    // minutes
+
 
     let form = new FormData();
       form.append('message','first message!');
       form.append('nunmber','+19172095158');
       form.append('minutes','0');
-      
+
       //form.append('minutes','3600');
       //$("#status").html('Starting Processing of staging to instagram...')
-    fetch('https://harvesting.ninja/hit_twilio', {
+    fetch('https://dev.harvesting.ninja/hit_twilio', {
         method: 'POST',
         body: form
     })
