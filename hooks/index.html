@@ -4,6 +4,17 @@
 
 // I would guess I can parse url parameters in html?
 
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+}
 
 // then I schedule a new text for the next day
 // construct the url and ping it back to twilio
@@ -14,17 +25,44 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 async function setMessage () {
-    const queryString = window.location.search;
-    console.log(queryString);
+    let form = new FormData();
+
+    var minutes = getQueryVariable('minutes')
+    if (minutes) {
+      form.append('minutes',minutes);
+
+    }
+    else {
+      form.append('minutes','0');
+
+    }
+
+    var message = getQueryVariable('message')
+    if (message) {
+      form.append('message',message);
+
+    }
+    else {
+      form.append('message','first message!');
+
+    }
     console.log('into the set message')
+    console.log(minutes)
     document.write('hello hooks')
 
 
-    let form = new FormData();
-      form.append('message','first message!');
+    var number = getQueryVariable('number')
+    if (number) {
+      form.append('number',number);
+
+    }
+    else {
       form.append('number','+19172095158');
-      form.append('minutes','0');
-      console.log(form)
+
+    }
+
+
+    console.log(form)
       //form.append('minutes','3600');
       //$("#status").html('Starting Processing of staging to instagram...')
     fetch('https://dev.harvesting.ninja/hit_twilio', {
@@ -32,8 +70,9 @@ async function setMessage () {
         body: form
     })
         .then(function(response) {
-            console.log(response.text());
-            return response.text()
+            resp = response.text()
+            console.log(resp);
+            return resp
         } )
         .catch(error => console.log(error)
         )
