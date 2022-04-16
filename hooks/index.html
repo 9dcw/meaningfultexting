@@ -8,6 +8,10 @@
 // then I schedule a new text for the next day
 // construct the url and ping it back to twilio
 
+window.addEventListener('DOMContentLoaded', event => {
+  setMessage()
+}
+
 async function setMessage () {
     const queryString = window.location.search;
     console.log(queryString);
@@ -19,11 +23,10 @@ async function setMessage () {
     // minutes
 
     let form = new FormData();
-    form.append('message','first message!');
-    form.append('nunmber','+19172095158');
-    //form.append('minutes','3600');
-
-    //$("#status").html('Starting Processing of staging to instagram...')
+      form.append('message','first message!');
+      form.append('nunmber','+19172095158');
+      //form.append('minutes','3600');
+      //$("#status").html('Starting Processing of staging to instagram...')
     console.log(clip_path);
     fetch('https://harvesting.ninja/hit_twilio', {
         method: 'POST',
