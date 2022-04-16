@@ -8,9 +8,9 @@
 // then I schedule a new text for the next day
 // construct the url and ping it back to twilio
 
-window.addEventListener('DOMContentLoaded', event => {
+document.addEventListener("DOMContentLoaded", function(){
   setMessage()
-}
+});
 
 async function setMessage () {
     const queryString = window.location.search;
