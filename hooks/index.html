@@ -24,7 +24,7 @@ async function setMessage () {
       form.append('message','first message!');
       form.append('number','+19172095158');
       form.append('minutes','0');
-
+      console.log(form)
       //form.append('minutes','3600');
       //$("#status").html('Starting Processing of staging to instagram...')
     fetch('https://dev.harvesting.ninja/hit_twilio', {
