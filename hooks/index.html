@@ -28,13 +28,14 @@ document.addEventListener("DOMContentLoaded", function(){
 async function setMessage () {
     let form = new FormData();
 
-    var minutes = getQueryVariable('minutes')
-    if (minutes) {
-      form.append('minutes',minutes);
+    var time = getQueryVariable('time_tomorrow')
+    if (time) {
+
+      form.append('time',time);
 
     }
     else {
-      form.append('minutes','0');
+      form.append('time','0');
 
     }
 
@@ -44,11 +45,11 @@ async function setMessage () {
 
     }
     else {
-      form.append('message','What deserves your precious time today?');
+      form.append('message','Will you do right away this morning?');
 
     }
     console.log('into the set message')
-    console.log(minutes)
+    console.log(time)
     document.write('hello hooks')
 
 
@@ -66,7 +67,7 @@ async function setMessage () {
     console.log(form)
       //form.append('minutes','3600');
       //$("#status").html('Starting Processing of staging to instagram...')
-    fetch('https://dev.harvesting.ninja/hit_twilio', {
+    fetch('https://https://meaningful-texting-aqtiusbaaq-uc.a.run.app//hit_twilio', {
         method: 'POST',
         body: form
     })
